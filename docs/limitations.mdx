@@ -1,0 +1,32 @@
+---
+title: Limitations
+---
+
+import {product, ui, backupLimitLabel, signInIdleMonths} from '@site/src/facts';
+
+This is an early version of {product.name}. Keep another copy of important writing.
+
+## Before you rely on WriMo
+
+- **The browser app needs internet to open.** There is no offline startup for this version.
+- **GitHub backup is manual.** Choose **{ui.backUp}**; local saves do not trigger uploads.
+- **No automatic merge or sync.** Changes made elsewhere can block a new backup rather than overwrite remote work.
+- **One project per private backup space on GitHub.** WriMo can create the space for you, or you can choose an existing private repository that WriMo's GitHub App can access.
+- **Online backup size limit: {backupLimitLabel}** for the serialized Project. This is a technical bound, not a commercial quota. If a Project exceeds it, keep writing and [download the saved draft](./export.mdx) rather than removing work. The download excludes history and pending edits.
+- **GitHub sign-in renews itself while you use WriMo**, and ends after about {signInIdleMonths} months without use, if you sign out, or if you remove WriMo's access on GitHub. Signing in again does not upload or remove local drafts.
+
+## Your browser holds your drafts
+
+Projects saved in one browser profile do not appear automatically in another. Browser-data clearing, profile deletion, private browsing and storage policies can remove local drafts. Persistent storage permission reduces some eviction risk but does not protect against deliberate clearing.
+
+Guest and signed-in drafts have different local lists. Use Back up to GitHub from the same local draft to start its first backup; WriMo asks before copying a guest draft into your account and retains the guest original. [Read how projects work](./projects.mdx) and [how to recover backups](./recovery.mdx).
+
+## Not available in this version
+
+- Automatic backup, automatic retry, or conflict merging between devices
+- In-app project or chapter deletion and chapter rearrangement
+- Restoring older GitHub versions or creating named checkpoints in WriMo
+- A dedicated notes workspace
+- Importing Word, PDF or other manuscript formats; supported WriMo current-state JSON can be recovered from a file
+
+**{ui.exportState}** downloads only the current locally saved project, without history or unsaved edits. Read [Export](./export.mdx) and [Privacy and data ownership](./privacy-and-ownership.mdx) for the relevant limits.

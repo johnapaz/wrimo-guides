@@ -1,0 +1,37 @@
+---
+title: Getting started
+slug: /
+---
+
+import {product, ui, status, signInIdleMonths} from '@site/src/facts';
+import SaveStates from './_partials/_save-states.mdx';
+
+{product.name} lets you write chapters in a browser. Headings in a chapter form a clickable outline. You can begin without a GitHub account.
+
+## Start a local project
+
+1. Open <a href={product.appUrl}>{product.appUrl}</a> in a regular browser window (not private or incognito).
+2. Enter a title, leave the repository field blank, and choose **{ui.newProject}**.
+3. Choose **{ui.newChapter}**, give the chapter a title, and write.
+4. Wait for **{status.saved}**, or choose **{ui.saveNow}** (Ctrl+S or ⌘S).
+5. Next time, use the same browser profile, select your project under **{ui.localProjects}**, and choose **{ui.openLocal}**.
+
+This is a local trial project. It cannot be connected to GitHub later. Signing in does not transfer it to a GitHub-backed project.
+
+## Start with GitHub backup
+
+The simplest route is to start writing, then choose **{ui.backUp}**: WriMo can create a private backup space for the Project on your GitHub account. If you already have a private writing repository that WriMo's GitHub App can access, you can also start a Project connected to it. One repository holds one project.
+
+1. Choose **{ui.signIn}** and authorize access.
+2. Enter the repository in `owner/repository` form, plus a project title.
+3. Choose **{ui.newProject}**. If the repository already contains a WriMo project, use **{ui.recover}** instead.
+4. Write and wait for **{status.saved}**.
+5. Choose **{ui.backUp}** and check for **{status.backedUp}** in the bottom bar.
+
+GitHub sign-in renews itself while you keep using WriMo and ends after about {signInIdleMonths} months without use. Your browser draft is not uploaded by signing in: backup is a separate action.
+
+## Understand the save labels
+
+<SaveStates />
+
+Continue with [Projects](./projects.mdx), [Chapters and the outline](./chapters.mdx), or [Saving and backup](./saving-and-backup.mdx). Read [Limits](./limitations.mdx) before depending on a single copy.

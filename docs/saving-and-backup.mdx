@@ -1,0 +1,36 @@
+---
+title: Saving and backup
+---
+
+import {status, ui, autosaveMs, backupLimitLabel} from '@site/src/facts';
+import SaveStates from './_partials/_save-states.mdx';
+
+WriMo treats unsaved edits, browser saves and GitHub backups as separate states. A successful local save is **not** a remote backup.
+
+<SaveStates />
+
+## Saving in your browser
+
+While you write, the top of the page shows **{status.pending}**. WriMo checks for unsaved edits every {autosaveMs} milliseconds and saves them to browser storage. Choose **{ui.saveNow}** to save immediately.
+
+**{status.saved}** appears after the browser confirms storage. The draft can survive closing and reopening the tab in the same browser profile, but clearing site data or browser storage eviction can erase it.
+
+If saving fails, WriMo shows **{status.saveFailed}**. Keep the page open and try **{ui.saveNow}** again. A pending-edits warning when leaving is not a guarantee that changes were saved.
+
+## Backing up to GitHub
+
+Open the Project you want to protect and choose **{ui.backUp}**. For a local-only or recovered-file draft, the first-backup dialog guides you through sign-in, then offers **Create and back up**: WriMo creates a private backup space for the Project on your GitHub account and backs up to it. You can instead choose an existing private repository. Nothing is created or uploaded until you choose. If WriMo is not yet allowed on your GitHub account, the dialog opens GitHub in a new tab so you can allow it, then you choose **Continue**. WriMo saves pending edits first and verifies the first uploaded snapshot. Later backups update that same destination. It does not upload after each local save.
+
+| Bottom bar | Meaning |
+| --- | --- |
+| **{status.backedUp}** · *time* | The most recent saved revision was confirmed on GitHub. |
+| **{status.pendingNotBackedUp}** | Current edits haven't been saved or backed up. |
+| **{status.backedUpEarlier}** *time* | There is a previous backup, but newer saved writing remains local. |
+| **{status.notBackedUp}** | No GitHub backup has been confirmed for this project. |
+| **{status.backupFailed}** | The backup failed; check the message and retry manually. |
+
+If the connection or sign-in fails, WriMo keeps the saved local draft. If GitHub's file has changed, WriMo refuses to replace it rather than silently discard the remote work. It cannot merge competing drafts.
+
+The serialized backup is limited to {backupLimitLabel} per project. Oversized work stays in local storage; use [Export](./export.mdx) to keep a saved-draft file instead of removing writing to fit. File recovery has its own documented safety bound and excludes history. An uncertain upload can be retried; confirm the bottom-bar status before relying on GitHub.
+
+For steps on another browser, see [Recovery](./recovery.mdx). For an independent downloadable copy, see [Export](./export.mdx). If a save or backup gets stuck, see [Troubleshooting](./troubleshooting.mdx).

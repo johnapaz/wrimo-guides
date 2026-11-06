@@ -1,0 +1,20 @@
+---
+title: Export your saved writing
+---
+
+import {ui, status} from '@site/src/facts';
+
+Export creates a downloadable JSON snapshot of the current project's **last successfully saved browser state**. It is different from GitHub backup.
+
+## Download a copy
+
+1. Open the project you want to keep.
+2. Choose **{ui.saveNow}** and wait for **{status.saved}**.
+3. Choose **{ui.exportState}** in the top bar.
+4. Save the downloaded JSON file somewhere you can find it, ideally outside this browser or device.
+
+The file includes the project information, chapters and structured chapter content from that saved revision. **It does not include edits still pending in the editor, Git commit history, or earlier snapshots.** It is not a Word document or a formatted manuscript export.
+
+To reopen this saved draft, return to Projects and choose **Recover from file**. Choose the JSON file you downloaded. File recovery needs no sign-in and never replaces a local draft with the same Project identity. If that Project is already local, open it from the list or inspect the file in a separate browser profile. Keep the original file.
+
+File recovery accepts supported WriMo current-state JSON up to 10 MB. This is a technical safety bound, not a storage entitlement. A recovered file is a local draft; it is not marked backed up online. For a remote copy, use [GitHub backup and recovery](./saving-and-backup.mdx).

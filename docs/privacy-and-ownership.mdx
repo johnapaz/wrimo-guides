@@ -1,0 +1,32 @@
+---
+title: Privacy and data ownership
+---
+
+import {product, ui, usageEvents} from '@site/src/facts';
+
+WriMo has two places where your writing may exist, depending on what you choose to do.
+
+## Where your drafts go
+
+**This browser.** WriMo saves projects to browser storage in the profile you're using. Guest and signed-in project lists are separate. Local writing is not automatically uploaded. Browser storage is vulnerable to profile removal, site-data clearing, eviction and some browser policies; even granted persistent storage isn't an independent backup.
+
+**Your GitHub repository (optional).** For a connected project, choosing **{ui.backUp}** sends a copy through WriMo's server to `project.json` in a separate private GitHub repository. The backup is JSON, not end-to-end encrypted by WriMo. GitHub can retain earlier versions in repository history, even after you remove text from the current version. Do not treat editing, signing out or losing browser data as deletion of past backups.
+
+You choose whether to use GitHub backup and control access to your writing repository through GitHub. This describes the current technical storage model, not a promise about legal ownership, permanent availability or deletion times. WriMo currently has no built-in project-deletion or history-erasure tool.
+
+## Sign-in and account data
+
+GitHub sign-in uses a protected, encrypted session cookie that the app's browser scripts cannot read. The session expires after a limited time. Signing out clears that session but does **not** delete browser drafts or GitHub commits. Requests for backup and recovery pass through WriMo's server and GitHub.
+
+## Optional usage analytics
+
+Where configured, WriMo asks for permission before using Google Analytics. You can change your answer using **Analytics preferences** in the app. Do Not Track and Global Privacy Control block this measurement. Declining doesn't stop writing, local saving or backup.
+
+The analytics event contract excludes manuscript text, titles, headings, repository names and GitHub account details. Google may still receive normal technical request information, including IP and device/browser information. Withdrawing consent stops future measurement; it does not erase measurements already received.
+
+<details>
+  <summary>Which usage events can WriMo send?</summary>
+  <ul>{usageEvents.map(name => <li key={name}><code>{name}</code></li>)}</ul>
+</details>
+
+See the <a href={product.appUrl + '/privacy'}>app's privacy notice</a> for more details. For practical ways to keep another copy, read [Saving and backup](./saving-and-backup.mdx) and [Export](./export.mdx).

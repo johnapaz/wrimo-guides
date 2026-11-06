@@ -1,0 +1,41 @@
+{
+  "name": "wrimo-docs-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Public WriMo documentation site (local proof of concept; not hosted)",
+  "scripts": {
+    "start": "docusaurus start",
+    "start:owner": "node scripts/docusaurus.mjs start --owner",
+    "build": "node scripts/docusaurus.mjs build",
+    "build:owner": "node scripts/docusaurus.mjs build --owner",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "typecheck": "tsc --noEmit",
+    "facts": "node scripts/check-facts.mjs",
+    "guard": "node scripts/publication-guard.mjs build",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/docs-search.test.mjs tests/not-found.test.mjs tests/config.test.mjs tests/facts-render.test.mjs tests/publication-guard.test.mjs tests/security-headers.test.mjs",
+    "test:strict": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/strict-build.test.mjs",
+    "test:owner": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/owner-build.test.mjs",
+    "check": "npm run typecheck && npm run facts && npm run build && npm run guard && npm test && npm run test:strict",
+    "test:csp": "node --test tests/csp-browser.test.mjs"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "3.1.1",
+    "clsx": "2.1.1",
+    "prism-react-renderer": "2.4.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "playwright": "1.64.1",
+    "typescript": "5.9.3"
+  }
+}

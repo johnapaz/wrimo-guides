@@ -1,0 +1,31 @@
+---
+title: Recover a project
+---
+
+import {ui, status} from '@site/src/facts';
+
+Recovery restores the most recent `project.json` that was [backed up to GitHub](./saving-and-backup.mdx#backing-up-to-github). It cannot retrieve edits that stayed only in another browser.
+
+## Restore from GitHub
+
+1. Open WriMo in the browser where you want a local copy.
+2. Choose **{ui.signIn}** if you're not already signed in. Use an account with access to the private writing repository.
+3. On the projects screen, enter the repository as `owner/repository`.
+4. Choose **{ui.recover}**. If the backup exists and is valid, WriMo adds it to this browser's local project list and opens it when you're still on the projects screen.
+5. Confirm the expected chapters are present, then wait for **{status.saved}** before changing anything.
+
+Recovery never replaces a draft already stored under that project's identity in the current signed-in local list. If WriMo says the project is already local, choose **{ui.openLocal}** instead. Do not clear browser storage as a workaround.
+
+## When versions differ
+
+If GitHub changed since this browser's last backup, WriMo refuses to overwrite the remote copy. Your local draft stays in place; WriMo does not merge it with the remote version. You can inspect the GitHub copy using a *separate browser profile* without disturbing the current draft. Keep both copies until you've decided what to preserve.
+
+## Recover a saved-draft file
+
+On the Projects screen, choose **Recover from file** and select a WriMo current-state JSON download. The file is validated before insertion. Unsupported or corrupt files are refused, and an existing local draft is never replaced. No sign-in or remote request is needed. The recovered draft retains its Project/chapter/heading identities and formatting, but has no online-backup acknowledgment.
+
+This restores only the saved revision in the file, without Git history or edits that were pending when it was downloaded. Keep the original file. See [Export](./export.mdx) for the file-recovery safety limit.
+
+If the only copy was in a cleared browser profile or a device you no longer have, and there is no remote backup or saved-draft file, **WriMo has no server-side draft to restore**.
+
+For access errors, missing backups or failed saves, see [Troubleshooting](./troubleshooting.mdx).

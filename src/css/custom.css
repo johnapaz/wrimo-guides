@@ -1,0 +1,34 @@
+:root {
+  --ifm-color-primary: #275244;
+  --ifm-color-primary-dark: #234a3d;
+  --ifm-color-primary-darker: #214539;
+  --ifm-color-primary-darkest: #1b392f;
+  --ifm-color-primary-light: #2b5a4b;
+  --ifm-color-primary-lighter: #2d5f4f;
+  --ifm-color-primary-lightest: #336b59;
+}
+[data-theme='dark'] {
+  --ifm-color-primary: #7fbfa8;
+  --ifm-color-primary-dark: #69b49a;
+  --ifm-color-primary-darker: #5eae93;
+  --ifm-color-primary-darkest: #4a947b;
+  --ifm-color-primary-light: #95cab6;
+  --ifm-color-primary-lighter: #a0d0bd;
+  --ifm-color-primary-lightest: #c0e0d4;
+}
+
+.wrimo-docs-search { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+.wrimo-docs-search input { min-width: 0; flex: 1; padding: 0.8rem; border: 1px solid var(--ifm-color-emphasis-500); border-radius: var(--ifm-global-radius); background: var(--ifm-background-color); color: var(--ifm-font-color-base); font: inherit; }
+.wrimo-docs-search input:focus-visible { outline: 2px solid var(--ifm-color-primary); outline-offset: 2px; }
+
+.wrimo-visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.wrimo-docs-search-navbar { position: relative; }
+.wrimo-docs-search-navbar .wrimo-docs-search { margin-top: 0; gap: 0.25rem; }
+.wrimo-docs-search-navbar .wrimo-docs-search input { width: 12rem; padding: 0.35rem 0.6rem; }
+.wrimo-docs-search__panel { position: absolute; right: 0; top: calc(100% + 0.5rem); z-index: calc(var(--ifm-z-index-fixed) + 1); width: min(22rem, calc(100vw - 2rem)); padding: 0.75rem 1rem; border: 1px solid var(--ifm-color-emphasis-300); border-radius: var(--ifm-global-radius); background: var(--ifm-background-surface-color); box-shadow: var(--ifm-global-shadow-md); }
+.wrimo-docs-search__panel[hidden] { display: none; }
+.wrimo-docs-search__panel p { margin: 0; }
+.wrimo-docs-search__results { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+@media (max-width: 996px) {
+  .wrimo-docs-search-navbar .wrimo-docs-search input { width: 8rem; }
+}

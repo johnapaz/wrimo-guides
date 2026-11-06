@@ -1,0 +1,36 @@
+---
+title: Troubleshooting
+---
+
+import {ui, status} from '@site/src/facts';
+
+If writing seems at risk, keep the editor open and check its save label before trying anything that clears site data or changes browser profiles.
+
+## I can't find my project
+
+Check that you're using the same device and normal browser profile. Under **{ui.localProjects}**, guest projects and signed-in projects are listed separately. Signing in doesn't transfer local trial drafts. If this is a new browser, [recover a previously backed-up project](./recovery.mdx).
+
+## Saving failed
+
+If you see **{status.saveFailed}**, leave the tab open and choose **{ui.saveNow}** again. A full storage quota or blocked browser storage can prevent local saves. Closing with pending changes can lose them; a browser close warning is not a substitute for a successful save. Avoid clearing site data to fix a save problem.
+
+## GitHub backup failed
+
+- Check that the project was created with a writing repository. Local trial projects cannot be connected afterward.
+- Sign in again if your GitHub session expired. Make sure you can access the repository and that it is private and available to WriMo's GitHub App.
+- If the remote project changed, don't repeatedly attempt to overwrite it. [Read the recovery guidance](./recovery.mdx#when-versions-differ); WriMo can't merge versions.
+- If the backup is too large, it must fit within the [current limit](./limitations.mdx#before-you-rely-on-wrimo). Your saved local draft remains available; reduce its size before trying again.
+
+A failed or uncertain upload does not mean the GitHub copy is current. Check for **{status.backedUp}** before relying on it. You can retry **{ui.backUp}** after resolving the error.
+
+## Recovery says nothing was found
+
+Enter the exact `owner/repository` for the connected project and verify the repository is accessible with your signed-in GitHub account. Recovery needs an existing WriMo `project.json` backup, not just an empty repository. If there is already a local draft, open it from the local list instead.
+
+## The site won't open offline
+
+WriMo's browser version needs an internet connection to start. Local storage does not make the site an offline-installable app. See [Limitations](./limitations.mdx).
+
+## The export seems out of date
+
+[Export](./export.mdx) reads the last locally saved revision, not unsaved changes. Save first and wait for the confirmation before downloading.
