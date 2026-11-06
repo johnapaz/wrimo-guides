@@ -42,7 +42,9 @@ export const backupLimitLabel = `${backupLimitBytes / 1_000_000} MB`;
 
 // Usage event names, in app order. Checked against the keys of usageRules in src/usage.ts.
 export const usageEvents = [
-  'page_view', 'cta_click', 'faq_open', 'splash_interaction', 'early_access_submit', 'auth_state', 'sign_in_start', 'sign_out',
+  'page_view', 'cta_click', 'faq_open', 'splash_interaction',
+  'marketing_intro', 'marketing_press', 'marketing_effect', 'marketing_celebration',
+  'marketing_signup', 'marketing_beta_interest', 'marketing_dialog', 'marketing_phrase', 'early_access_submit', 'auth_state', 'sign_in_start', 'sign_out',
   'project_create', 'project_open', 'project_close', 'project_rename', 'welcome_route', 'writing_resume', 'backup_destination',
   'backup_space', 'chapter_create', 'chapter_select', 'chapter_rename', 'outline_jump', 'format_use', 'sidebar_toggle',
   'sidebar_resize', 'focus_toggle', 'account_toggle', 'tools_toggle', 'zoom_change', 'appearance_change', 'skin_change',
