@@ -43,6 +43,7 @@ export const ui = {
   openLocal: 'Open local project',
   recover: 'Recover from GitHub',
   signIn: 'Sign in with GitHub',
+  tryGitHubAgain: 'Try GitHub again',
   exportState: 'Export current state (no history)',
   localProjects: 'Local projects',
 } as const;
@@ -62,7 +63,7 @@ export const backupLimitLabel = `${backupLimitBytes / 1_000_000} MB`;
 export const usageEvents = [
   'page_view', 'cta_click', 'faq_open', 'splash_interaction',
   'marketing_intro', 'marketing_press', 'marketing_effect', 'marketing_celebration',
-  'marketing_signup', 'marketing_beta_interest', 'marketing_dialog', 'marketing_phrase', 'early_access_submit', 'auth_state', 'sign_in_start', 'sign_out',
+  'marketing_signup', 'marketing_beta_interest', 'marketing_dialog', 'marketing_phrase', 'early_access_submit', 'auth_state', 'sign_in_start', 'sign_in_return', 'sign_out',
   'project_create', 'project_open', 'project_close', 'project_rename', 'welcome_route', 'writing_resume', 'backup_destination',
   'backup_space', 'chapter_create', 'chapter_select', 'chapter_rename', 'outline_jump', 'format_use', 'sidebar_toggle',
   'sidebar_resize', 'focus_toggle', 'account_toggle', 'tools_toggle', 'zoom_change', 'appearance_change', 'skin_change',
