@@ -12,7 +12,7 @@ test('search finds rendered guide content, handles whitespace and misses', () =>
   assert.ok(searchGuides(guides, '  SAVING   BACKUP  ').some(g => g.url === '/saving-and-backup'));
   // This phrase comes from a rendered shared partial, not a page-title keyword list.
   assert.ok(searchGuides(guides, 'within moments').some(g => g.url === '/'));
-  assert.ok(searchGuides(guides, 'guest projects').some(g => g.url === '/projects'));
+  assert.ok(searchGuides(guides, 'started before sign-in').some(g => g.url === '/projects'));
   assert.ok(searchGuides(guides, 'last successfully saved').some(g => g.url === '/export'));
   assert.ok(searchGuides(guides, 'GitHub sign-in').some(g => g.url === '/privacy-and-ownership'));
   assert.deepEqual(searchGuides(guides, 'unfindable-zzzz'), []);

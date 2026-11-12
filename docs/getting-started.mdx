@@ -6,27 +6,29 @@ slug: /
 import {product, ui, status, signInIdleMonths} from '@site/src/facts';
 import SaveStates from './_partials/_save-states.mdx';
 
-{product.name} lets you write chapters in a browser. Headings in a chapter form a clickable outline. You can begin without a GitHub account.
+{product.name} lets you write chapters in a browser. Headings in a chapter form a clickable outline. You can begin without a name for your Project and without an account.
 
-## Start a local project
+## Start writing
 
 1. Open <a href={product.appUrl}>{product.appUrl}</a> in a regular browser window (not private or incognito).
-2. Enter a title, leave the repository field blank, and choose **{ui.newProject}**.
-3. Choose **{ui.newChapter}**, give the chapter a title, and write.
-4. Wait for **{status.saved}**, or choose **{ui.saveNow}** (Ctrl+S or ⌘S).
-5. Next time, use the same browser profile, select your project under **{ui.localProjects}**, and choose **{ui.openLocal}**.
+2. Choose **{ui.startWriting}**. A blank page opens.
+3. Write. WriMo saves to this browser as you go. Wait for **{status.saved}** in the bottom bar, or press Ctrl+S or ⌘S to save immediately.
+4. Choose **WriMo** at the upper left to see your Projects. A draft without a name is listed as **Untitled Project**; choose **{ui.nameProject}** to give it one.
+5. Next time, open WriMo in the same browser profile. It reopens the Project you were writing. To pick a different one, choose **WriMo**, then **{ui.openProject}**.
 
-This is a local trial project. It cannot be connected to GitHub later. Signing in does not transfer it to a GitHub-backed project.
+This draft is stored only in this browser until you back it up. You can back it up at any time.
 
-## Start with GitHub backup
+## Back up to GitHub when you're ready
 
-The simplest route is to start writing, then choose **{ui.backUp}**: WriMo can create a private backup space for the Project on your GitHub account. If you already have a private writing repository that WriMo's GitHub App can access, you can also start a Project connected to it. One repository holds one project.
+Any Project can be backed up, including one you started without signing in.
 
-1. Choose **{ui.signIn}** and authorize access.
-2. Enter the repository in `owner/repository` form, plus a project title.
-3. Choose **{ui.newProject}**. If the repository already contains a WriMo project, use **{ui.recover}** instead.
-4. Write and wait for **{status.saved}**.
-5. Choose **{ui.backUp}** and check for **{status.backedUp}** in the bottom bar.
+1. Open the Project, open the save and backup details in the bottom bar, and choose **{ui.backUp}**.
+2. If you are not signed in, WriMo saves your writing on this device and takes you to GitHub to sign in. Nothing is uploaded yet.
+3. If you started the draft before signing in, WriMo asks to copy it into your account on this device. The original stays where it is.
+4. Choose **{ui.createAndBackUp}** to let WriMo create a private backup space on your GitHub account, or **{ui.useExistingRepository}** to pick a private repository that WriMo's GitHub App can access. One repository holds one Project.
+5. Check for **{status.backedUp}** in the save and backup details.
+
+To bring back a Project you backed up earlier, choose **{ui.existingProject}** on your first visit, or open **{ui.connectOrRecover}** on the Projects page, and follow [Recover a project](./recovery.mdx).
 
 GitHub sign-in renews itself while you keep using WriMo and ends after about {signInIdleMonths} months without use. Your browser draft is not uploaded by signing in: backup is a separate action.
 

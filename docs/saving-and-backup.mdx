@@ -11,17 +11,19 @@ WriMo treats unsaved edits, browser saves and GitHub backups as separate states.
 
 ## Saving in your browser
 
-While you write, the top of the page shows **{status.pending}**. WriMo checks for unsaved edits every {autosaveMs} milliseconds and saves them to browser storage. Choose **{ui.saveNow}** to save immediately.
+While you write, the bottom bar shows **{status.pending}**. WriMo checks for unsaved edits every {autosaveMs} milliseconds and saves them to browser storage. To save immediately, press Ctrl+S or ⌘S, or open the save and backup details in the bottom bar and choose **{ui.saveNow}**.
 
 **{status.saved}** appears after the browser confirms storage. The draft can survive closing and reopening the tab in the same browser profile, but clearing site data or browser storage eviction can erase it.
 
-If saving fails, WriMo shows **{status.saveFailed}**. Keep the page open and try **{ui.saveNow}** again. A pending-edits warning when leaving is not a guarantee that changes were saved.
+If saving fails, WriMo shows **{status.saveFailed}**. Keep the page open, open the save and backup details and try **{ui.saveNow}** again. A pending-edits warning when leaving is not a guarantee that changes were saved.
 
 ## Backing up to GitHub
 
-Open the Project you want to protect and choose **{ui.backUp}**. For a local-only or recovered-file draft, the first-backup dialog guides you through sign-in, then offers **Create and back up**: WriMo creates a private backup space for the Project on your GitHub account and backs up to it. You can instead choose an existing private repository. Nothing is created or uploaded until you choose. If WriMo is not yet allowed on your GitHub account, the dialog opens GitHub in a new tab so you can allow it, then you choose **Continue**. WriMo saves pending edits first and verifies the first uploaded snapshot. Later backups update that same destination. It does not upload after each local save.
+Open the Project you want to protect, open the save and backup details in the bottom bar and choose **{ui.backUp}**. This works for any Project, including one started without signing in. For a local-only or recovered-file draft, the first-backup dialog guides you through sign-in. If the draft was started before you signed in, WriMo asks to copy it into your account on this device and leaves the original where it is. The dialog then offers **{ui.createAndBackUp}**: WriMo creates a private backup space for the Project on your GitHub account and backs up to it. You can instead choose an existing private repository. Nothing is created or uploaded until you choose. If WriMo is not yet allowed on your GitHub account, the dialog opens GitHub in a new tab so you can allow it, then you choose **Continue**. WriMo saves pending edits first and verifies the first uploaded snapshot. Later backups update that same destination. It does not upload after each local save.
 
-| Bottom bar | Meaning |
+The bottom bar shows a short form, such as **No remote backup** or **Backup older**. Open the save and backup details for the full status:
+
+| Save and backup details | Meaning |
 | --- | --- |
 | **{status.backedUp}** · *time* | The most recent saved revision was confirmed on GitHub. |
 | **{status.pendingNotBackedUp}** | Current edits haven't been saved or backed up. |
@@ -31,6 +33,6 @@ Open the Project you want to protect and choose **{ui.backUp}**. For a local-onl
 
 If the connection or sign-in fails, WriMo keeps the saved local draft. If GitHub's file has changed, WriMo refuses to replace it rather than silently discard the remote work. It cannot merge competing drafts.
 
-The serialized backup is limited to {backupLimitLabel} per project. Oversized work stays in local storage; use [Export](./export.mdx) to keep a saved-draft file instead of removing writing to fit. File recovery has its own documented safety bound and excludes history. An uncertain upload can be retried; confirm the bottom-bar status before relying on GitHub.
+The serialized backup is limited to {backupLimitLabel} per project. Oversized work stays in local storage; use [Export](./export.mdx) to keep a saved-draft file instead of removing writing to fit. File recovery has its own documented safety bound and excludes history. An uncertain upload can be retried; confirm the status in the save and backup details before relying on GitHub.
 
 For steps on another browser, see [Recovery](./recovery.mdx). For an independent downloadable copy, see [Export](./export.mdx). If a save or backup gets stuck, see [Troubleshooting](./troubleshooting.mdx).
