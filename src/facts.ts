@@ -16,8 +16,26 @@ export const status = {
   backupFailed: 'Saved locally · backup failed — retry Back up to GitHub',
 } as const;
 
-// Control labels. Checked against src/index.html and scripts/build-web.mjs.
+// Control labels. Checked against src/index.html, scripts/build-web.mjs, web/entry.ts and web/first-backup-ui.ts.
+// newProject, openLocal and localProjects are no longer shown in the browser app and no page uses them; they stay
+// until the application repository's check stops requiring them.
 export const ui = {
+  startWriting: 'Just start writing',
+  existingProject: 'Already have a project?',
+  newBlankProject: 'New blank Project',
+  createProject: 'Create Project',
+  openProject: 'Open Project',
+  nameProject: 'Name Project',
+  rename: 'Rename',
+  saveName: 'Save name',
+  beforeSignIn: 'Started before sign-in',
+  copyAndOpen: 'Copy and open',
+  signOutForOriginals: 'Sign out to open the originals',
+  connectOrRecover: 'Connect or recover an existing backup',
+  recoverFile: 'Recover from file',
+  createAndBackUp: 'Create and back up',
+  useExistingRepository: 'Use an existing repository',
+  account: 'Account',
   newProject: 'New project',
   newChapter: '+ New chapter',
   saveNow: 'Save now',

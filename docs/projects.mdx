@@ -4,22 +4,22 @@ title: Projects
 
 import {ui, status} from '@site/src/facts';
 
-A project contains its chapters and their writing. WriMo shows locally stored projects in the current browser profile.
+A Project contains its chapters and their writing. The Projects page lists the Projects stored in the current browser profile, each with its title and the date it was last saved on this device.
 
-## Create or reopen
+## Create, open and name
 
-1. On the projects screen, enter a project title.
-2. For a local trial, leave the repository field empty. For a GitHub-backed project, [sign in and enter a private repository](./getting-started.mdx#start-with-github-backup) before creating it.
-3. Choose **{ui.newProject}**. The editor opens with no chapters; choose **{ui.newChapter}** to begin.
-4. To reopen later, select the project under **{ui.localProjects}** and choose **{ui.openLocal}**.
+- **Start with a blank page.** On the Projects page, choose **{ui.newBlankProject}**. The Project opens with its first chapter and no name. On your first visit, the same action is **{ui.startWriting}**.
+- **Start with a title.** Enter a Project title and choose **{ui.createProject}**. This Project opens with no chapters; choose **{ui.newChapter}** to begin.
+- **Open.** Choose **{ui.openProject}** on the Project you want.
+- **Name or rename.** Choose **{ui.nameProject}** on an untitled Project, or **{ui.rename}** on one that has a title. Type the name and choose **{ui.saveName}**.
 
-To return to the projects screen, choose the app name at the upper left. WriMo attempts to save pending changes before leaving. If a save fails, remain in the editor and retry instead of closing it.
+To return to the Projects page from the editor, choose **WriMo** at the upper left. WriMo attempts to save pending changes before leaving. If a save fails, remain in the editor and retry instead of closing it.
 
 ## Keep track of which copy you're viewing
 
 - **{status.saved}** means the open project is saved in this browser, not necessarily on GitHub.
-- A repository is chosen when a project is created. Local trial projects cannot be converted to connected projects in this version.
-- Guest projects and projects opened while signed in appear in separate local lists, even in the same browser profile. If a guest project seems missing after sign-in, sign out and check its original guest list.
+- Any Project can be backed up later, including one started without signing in. Open it and choose **{ui.backUp}**; see [Backing up to GitHub](./saving-and-backup.mdx#backing-up-to-github).
+- After you sign in, drafts you started while signed out are listed under **{ui.beforeSignIn}**. Choose **{ui.copyAndOpen}** to copy one into your account on this device and keep writing while signed in. The original stays available when you are signed out, and the copy and the original are edited separately. To reach an original, choose **{ui.signOutForOriginals}**.
 - Projects do not automatically appear on another device. [Recover a GitHub backup](./recovery.mdx) there after making one here.
 
-WriMo currently has no in-app project deletion or project-renaming control. You can name a project when creating it, and you can [export its saved state](./export.mdx).
+WriMo currently has no in-app Project deletion. You can [export a Project's saved state](./export.mdx).
