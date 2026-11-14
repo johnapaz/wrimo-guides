@@ -9,7 +9,7 @@ test('built pages render the shared facts', {skip: !existsSync('build/index.html
   const page = name => readFileSync(`build/${name}.html`, 'utf8');
   for (const event of usageEvents) assert.match(page('privacy-and-ownership'), new RegExp(`<code>${event}</code>`));
   assert.match(page('limitations'), new RegExp(backupLimitLabel));
-  for (const label of [ui.newBlankProject, ui.openProject, ui.nameProject, ui.beforeSignIn, ui.copyAndOpen]) assert.ok(page('projects').includes(label), `${label} on projects`);
+  for (const label of [ui.newBlankProject, ui.connectOrRecover, ui.fromGitHub, ui.projectOptions, ui.onThisDevice, ui.nameProject, ui.beforeSignIn, ui.copyAndOpen]) assert.ok(page('projects').includes(label), `${label} on projects`);
   assert.ok(page('index').includes(ui.startWriting), `${ui.startWriting} on index`);
   // The save-states partial renders on more than one page.
   const partial = readFileSync('docs/_partials/_save-states.mdx', 'utf8').match(/WriMo saves it to this browser [^.|]+/)[0];
