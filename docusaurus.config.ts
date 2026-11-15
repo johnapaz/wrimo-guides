@@ -1,3 +1,4 @@
+import {basename} from 'node:path';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import noInternalLinks from './src/remark/no-internal-links.mjs';
@@ -17,6 +18,18 @@ const config: Config = {
   onDuplicateRoutes: 'throw',
   markdown: {
     hooks: {onBrokenMarkdownLinks: 'throw', onBrokenMarkdownImages: 'throw'},
+    preprocessor({filePath, fileContent}) {
+      if (basename(filePath) !== 'whats-new-0-1-1.mdx') return fileContent;
+      // GitHub renders the source's relative images. Docusaurus serves the same
+      // files from its static directory at either the standalone or embedded base URL.
+      const screenshots = /!\[([^\]\n]+)\]\(\.\.\/static\/images\/0\.1\.1\/([a-z-]+\.jpg)\)/g;
+      const page = fileContent.replace(screenshots, (_, alt: string, file: string) =>
+        `<img src={useBaseUrl('/images/0.1.1/${file}')} alt={${JSON.stringify(alt)}} width="1363" height="936" />`,
+      );
+      return page.replace(/^---\n[\s\S]*?\n---\n/, frontMatter =>
+        `${frontMatter}\nimport useBaseUrl from '@docusaurus/useBaseUrl';\n`,
+      );
+    },
   },
   i18n: {defaultLocale: 'en', locales: ['en']},
   presets: [
