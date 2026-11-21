@@ -1,5 +1,6 @@
 build/
 build-owner/
+build-public/
 .docusaurus/
 .cache-loader/
 node_modules/

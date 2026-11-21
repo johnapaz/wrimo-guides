@@ -15,4 +15,14 @@ npm start       # local preview
 - `scripts/publication-guard.mjs` scans the build for protected patterns, such as credentials, account or deployment identifiers, email addresses and internal links. Maintainers run additional private checks before publication.
 - `src/remark/no-internal-links.mjs` fails the build on links outside `docs/`.
 
+## Builds
+
+| Command | Output | Use |
+| --- | --- | --- |
+| `npm run build` | `build/` | Previews and the copy embedded in the app. Not indexed. |
+| `npm run build:owner` | `build-owner/` | Private owner previews with "Edit this page" links. Not indexed. |
+| `npm run build:public` | `build-public/` | The public docs.wrimo.co release: indexed, with a sitemap, the rights footer, a "Report a problem" link and cookieless Cloudflare Web Analytics allowed by the CSP. |
+
+Found a problem? [Report it](https://github.com/johnapaz/wrimo-guides/issues/new/choose). This repository is public, so never post your writing, files, passwords or tokens.
+
 Guides describe released, verified behavior only. Pull requests run `npm run check`, owner-mode isolation and a real-browser CSP and search test; nothing in this repository deploys.
