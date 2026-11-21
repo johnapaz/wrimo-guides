@@ -25,5 +25,6 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build:owner && npm run test:owner
+      - run: npm run build:public && node scripts/publication-guard.mjs build-public && npm run test:public
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:csp

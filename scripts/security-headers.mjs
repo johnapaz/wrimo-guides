@@ -39,16 +39,25 @@ export function verifySecurityHeaders(dir) {
   return {pages, inlineScripts: count, hashes: [...allowed].filter(s => s.startsWith("'sha256-")).length};
 }
 
-export function writeSecurityHeaders(dir) {
+// Cloudflare Web Analytics: cookieless, no fingerprinting, no consent banner (John, Nov 20). The beacon is added by
+// Cloudflare when John turns Web Analytics on for the production project, so only the public build allows it.
+export const WEB_ANALYTICS = {script: 'https://static.cloudflareinsights.com', connect: 'https://cloudflareinsights.com'};
+
+/**
+ * `publicRelease` is only for the indexed production site: it drops `X-Robots-Tag: noindex` and allows the
+ * Cloudflare Web Analytics beacon. Previews, the owner build and the embedded copy keep the stricter default.
+ */
+export function writeSecurityHeaders(dir, {publicRelease = false} = {}) {
   const hashes = new Set();
   for (const file of htmlFiles(dir)) for (const body of inlineScripts(readFileSync(file, 'utf8'))) hashes.add(scriptHash(body));
-  const csp = ["default-src 'self'", `script-src 'self' ${[...hashes].sort().join(' ')}`.trim(),
+  const beacon = publicRelease ? ` ${WEB_ANALYTICS.script}` : '';
+  const csp = ["default-src 'self'", `script-src 'self'${beacon} ${[...hashes].sort().join(' ')}`.trim(),
     "script-src-attr 'none'", "style-src 'self' 'unsafe-inline'", "img-src 'self' data:", "font-src 'self' data:",
-    "connect-src 'self'", "object-src 'none'", "base-uri 'none'", "form-action 'self'", "frame-ancestors 'none'"].join('; ');
+    `connect-src 'self'${publicRelease ? ` ${WEB_ANALYTICS.connect}` : ''}`, "object-src 'none'", "base-uri 'none'", "form-action 'self'", "frame-ancestors 'none'"].join('; ');
   // Pages limits each header line to 2,000 characters. Fail rather than silently truncate hashes.
   const line = `  Content-Security-Policy: ${csp}`;
   if (Buffer.byteLength(line) > 2000) throw new Error('CSP exceeds the Pages header line limit');
-  writeFileSync(path.join(dir, '_headers'), `/*\n${line}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  X-Frame-Options: DENY\n  X-Robots-Tag: noindex\n`);
+  writeFileSync(path.join(dir, '_headers'), `/*\n${line}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  X-Frame-Options: DENY\n${publicRelease ? '' : '  X-Robots-Tag: noindex\n'}`);
   return verifySecurityHeaders(dir);
 }
 

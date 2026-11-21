@@ -8,6 +8,7 @@
     "start:owner": "node scripts/docusaurus.mjs start --owner",
     "build": "node scripts/docusaurus.mjs build",
     "build:owner": "node scripts/docusaurus.mjs build --owner",
+    "build:public": "node scripts/docusaurus.mjs build --public",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "typecheck": "tsc --noEmit",
@@ -16,6 +17,7 @@
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/docs-search.test.mjs tests/not-found.test.mjs tests/config.test.mjs tests/facts-render.test.mjs tests/publication-guard.test.mjs tests/security-headers.test.mjs",
     "test:strict": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/strict-build.test.mjs",
     "test:owner": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/owner-build.test.mjs",
+    "test:public": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/public-build.test.mjs",
     "check": "npm run typecheck && npm run facts && npm run build && npm run guard && npm test && npm run test:strict",
     "test:csp": "node --test tests/csp-browser.test.mjs"
   },

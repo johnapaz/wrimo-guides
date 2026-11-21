@@ -1,0 +1,38 @@
+name: Report a problem
+description: Something in WriMo or these guides doesn't work or is wrong.
+labels: [problem]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repository is public. **Never paste your writing, project files, backup files, passwords or access tokens here.** Describe what happened instead; we'll ask for anything else privately if we need it.
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where did it happen?
+      options: [The WriMo app in a browser, The WriMo desktop app, These guides, Not sure]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to see it again
+      placeholder: "1. Open ...\n2. Choose ...\n3. See ..."
+  - type: input
+    id: version
+    attributes:
+      label: WriMo version, browser or system
+      placeholder: e.g. 0.1.1, Firefox 145 on Windows 11
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Before you send
+      options:
+        - label: I haven't included any of my writing, files, passwords or tokens.
+          required: true

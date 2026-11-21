@@ -5,13 +5,22 @@ import noInternalLinks from './src/remark/no-internal-links.mjs';
 import {editUrl} from './source-repository.mjs';
 
 // Canonical address; hosting and public release are separate operator decisions.
+// Public mode is only for the standalone production release of docs.wrimo.co (D-41). Previews, the owner build and the
+// copy embedded in the app under /docs/ stay noindex, so search engines see one canonical site.
+const publicRelease = process.env.WRIMO_DOCS_PUBLIC === '1' && process.env.WRIMO_DOCS_OWNER !== '1' &&
+  process.env.WRIMO_DOCS_BASE_URL !== '/docs/';
+const PUBLIC_FOOTER = '© 2026 John Paz. All rights reserved.';
+const PREVIEW_FOOTER = 'WriMo documentation preview. Not yet published.';
+// Problems are reported as Issues on this public repository (John, Nov 20). The form warns against posting writing.
+const REPORT_PROBLEM_URL = 'https://github.com/johnapaz/wrimo-guides/issues/new/choose';
+
 const config: Config = {
   title: 'WriMo Docs',
   tagline: 'How to use WriMo',
   url: 'https://docs.wrimo.co',
   // The embedded help release uses /docs/; the standalone preview keeps /.
   baseUrl: process.env.WRIMO_DOCS_BASE_URL === '/docs/' ? '/docs/' : '/',
-  noIndex: true,
+  noIndex: !publicRelease,
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
@@ -49,14 +58,17 @@ const config: Config = {
         },
         blog: false,
         pages: false,
-        sitemap: false,
+        // A sitemap only for the indexed production site.
+        sitemap: publicRelease ? {changefreq: 'weekly', priority: 0.5} : false,
         theme: {customCss: './src/css/custom.css'},
       } satisfies Preset.Options,
     ],
   ],
   themeConfig: {
     navbar: {title: 'WriMo Docs'},
-    footer: {style: 'light', copyright: 'WriMo documentation preview. Not yet published.'},
+    footer: publicRelease
+      ? {style: 'light', links: [{label: 'Report a problem', href: REPORT_PROBLEM_URL}], copyright: PUBLIC_FOOTER}
+      : {style: 'light', copyright: PREVIEW_FOOTER},
     colorMode: {respectPrefersColorScheme: true},
   } satisfies Preset.ThemeConfig,
 };
