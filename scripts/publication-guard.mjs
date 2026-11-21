@@ -51,6 +51,15 @@ export const protectedPatterns = [
   ['record identifier', /\b[RDQ]-\d{2,}(?:-\d+)?\b/], // a requirement, decision or question ID, optionally issue-qualified
 ];
 
+// UUIDs that are public by design, so the UUID rule ignores exactly these values and still flags every other UUID:
+// the nil and max UUIDs (inside the published UUID pattern of static/schemas/) and the made-up IDs in the
+// developer docs' examples. Add a value only for a documentation example, never one copied from a real system.
+export const documentationUuids = [
+  '00000000-0000-0000-0000-000000000000', 'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  '86a18d42-4dbd-4b2e-8040-284925ef0aa9', 'd4260ef8-d4f1-4b9e-ac1c-522633b4cb04', '27ea672c-4443-43b2-ad68-c7cbe2b2e2c2',
+];
+const withoutDocumentationUuids = text => documentationUuids.reduce((t, id) => t.replaceAll(id, ''), text);
+
 const words = text => text.toLowerCase().match(/[\p{L}\p{N}]+(?:['’][\p{L}]+)?/gu) || [];
 
 function* files(dir, skip = new Set()) {
@@ -127,7 +136,8 @@ export function scan(buildDir, {root = repoRoot, index = buildIndex(protectedSou
     const rel = path.relative(buildDir, file);
     const text = file.endsWith('.html') ? htmlText(raw) : raw;
     for (const [name, pattern] of protectedPatterns) {
-      const match = raw.match(pattern) || (text !== raw && text.match(pattern));
+      const [r, t] = name.startsWith('UUID') ? [withoutDocumentationUuids(raw), withoutDocumentationUuids(text)] : [raw, text];
+      const match = r.match(pattern) || (t !== r && t.match(pattern));
       if (match) findings.push({file: rel, kind: name, sample: match[0].slice(0, 80)});
     }
     for (const name of docNames) {

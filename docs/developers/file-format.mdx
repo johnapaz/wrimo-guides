@@ -1,0 +1,75 @@
+---
+title: WriMo project file format
+description: The JSON format of a WriMo project, with its published JSON Schema.
+---
+
+import {ui} from '@site/src/facts';
+
+A WriMo project is one JSON file. You get the same file from **{ui.exportState}** and as `project.json` in a project's GitHub backup repository. Any tool, in any language, can read it.
+
+## The schema
+
+The format is published as JSON Schema (draft 2020-12):
+
+- **Schema:** [project-v1.schema.json](https://docs.wrimo.co/schemas/project-v1.schema.json)
+- **Applies to:** files with `"schemaVersion": 1`
+
+WriMo generates this schema from the same definition it uses to check every project it opens, so the two always agree. Validate with any JSON Schema 2020-12 validator.
+
+## What a project holds
+
+| Field | Meaning |
+| --- | --- |
+| `format` | Always `"wrimo"`. Older projects may say `"writemo"`; both open. |
+| `schemaVersion` | `1` for this format. |
+| `id` | The project's permanent ID, a UUID. It never changes, even when the title does. |
+| `title` | Up to 300 characters. |
+| `revision` | Goes up by one with every save. |
+| `updatedAt` | When it was last saved, as an ISO 8601 UTC time. |
+| `chapters` | The chapters in order. Each has an `id`, a `title`, its `content` and an `origin` (`null` unless it came from another document). |
+| `extensions` | Named data from WriMo and other tools, for example `org.wrimo.demo`. |
+
+Chapter `content` is a rich-text tree: a `doc` node holding paragraphs, headings (levels 1 to 3), lists, quotes, code blocks and text with bold, italic, strikethrough, code, underline and link marks.
+
+## A small example
+
+```json title="project.json"
+{
+  "format": "wrimo",
+  "schemaVersion": 1,
+  "id": "86a18d42-4dbd-4b2e-8040-284925ef0aa9",
+  "title": "Field Notes",
+  "revision": 3,
+  "updatedAt": "2026-11-20T18:30:00.000Z",
+  "chapters": [
+    {
+      "id": "d4260ef8-d4f1-4b9e-ac1c-522633b4cb04",
+      "title": "Chapter 1",
+      "content": {
+        "type": "doc",
+        "content": [
+          {"type": "heading", "attrs": {"level": 2, "id": "27ea672c-4443-43b2-ad68-c7cbe2b2e2c2"}, "content": [{"type": "text", "text": "Morning"}]},
+          {"type": "paragraph", "content": [{"type": "text", "text": "The fog lifted by nine."}]}
+        ]
+      },
+      "origin": null,
+      "extensions": {}
+    }
+  ],
+  "extensions": {}
+}
+```
+
+## Rules the schema can't check
+
+WriMo also refuses a file that breaks any of these:
+
+- **Unique IDs:** the project, every chapter and every heading each need their own UUID.
+- **Headings:** levels 1 to 3 only, and every heading needs an `id`.
+- **Editor-valid content:** chapter content has to be something WriMo's editor can open, such as text inside a paragraph rather than directly inside `doc`.
+
+## Good to know
+
+- **Keep IDs stable.** WriMo uses them to tell a project, chapter or heading apart from a copy. Make new UUIDs only for new things.
+- **Extension data isn't guaranteed yet.** WriMo doesn't promise to keep data under `extensions` that it doesn't recognize.
+- **A file is a snapshot.** It has no history and no edits that weren't saved yet. Your GitHub backup repository keeps earlier versions in its history.
