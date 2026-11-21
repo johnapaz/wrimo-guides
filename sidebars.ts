@@ -12,6 +12,7 @@ const sidebars: SidebarsConfig = {
     'troubleshooting',
     'privacy-and-ownership',
     'limitations',
+    {type: 'category', label: 'For developers', items: ['developers/file-format']},
   ],
 };
 

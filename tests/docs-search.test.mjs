@@ -5,7 +5,7 @@ import {searchGuides} from '../src/docs-search.ts';
 
 test('search finds rendered guide content, handles whitespace and misses', () => {
   const guides = JSON.parse(readFileSync('build/search-index.json', 'utf8'));
-  const routes = ['/', '/projects', '/chapters', '/saving-and-backup', '/recovery', '/export', '/troubleshooting', '/privacy-and-ownership', '/limitations', '/whats-new-0-1-1'];
+  const routes = ['/', '/projects', '/chapters', '/saving-and-backup', '/recovery', '/export', '/troubleshooting', '/privacy-and-ownership', '/limitations', '/whats-new-0-1-1', '/developers/file-format'];
   assert.equal(guides.length, routes.length);
   assert.deepEqual(new Set(guides.map(g => g.url)), new Set(routes));
   for (const guide of guides) assert.ok(existsSync(`build/${guide.url === '/' ? 'index' : guide.url.slice(1)}.html`));

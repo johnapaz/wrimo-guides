@@ -165,3 +165,11 @@ test('outside the application repository, named record sets catch copied applica
   const pathLeak = runGuard(site, fakeBuild({'a.js': '"source":"docs/synthetic-handoff.md"'}), env);
   assert.match(pathLeak.stderr, /repo docs\/ path/);
 });
+
+test('only the listed documentation UUIDs pass; any other UUID is still flagged', () => {
+  const example = '86a18d42-4dbd-4b2e-8040-284925ef0aa9';
+  assert.deepEqual(kinds(fakeBuild({'dev.html': page(`"id": "${example}" and 00000000-0000-0000-0000-000000000000`)})), []);
+  const other = '3f2c9a10-5b6e-4d7f-8a9b-0c1d2e3f4a5b';
+  assert.ok(kinds(fakeBuild({'dev.html': page(`"id": "${example}", "id": "${other}"`)})).includes('UUID (Access/deployment/project ID)'));
+  assert.ok(kinds(fakeBuild({'a.js': `x="${other}"`})).includes('UUID (Access/deployment/project ID)'));
+});
